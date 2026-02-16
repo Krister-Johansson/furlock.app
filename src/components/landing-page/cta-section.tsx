@@ -14,7 +14,7 @@ export function CtaSection() {
         </p>
         <Link to="/create">
           <Button size="lg" className="gap-2 text-base px-8">
-            <Lock className="size-4" />
+            <Lock className="size-4" aria-hidden="true" />
             Create Your First Document
           </Button>
         </Link>

@@ -49,7 +49,7 @@ export function HeroSection() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link to="/create">
             <Button size="lg" className="gap-2 text-base px-8">
-              <FileText className="size-4" />
+              <FileText className="size-4" aria-hidden="true" />
               Create a Secret Document
             </Button>
           </Link>
@@ -59,7 +59,7 @@ export function HeroSection() {
               size="lg"
               className="gap-2 text-base px-8"
             >
-              <KeyRound className="size-4" />I Have a Key
+              <KeyRound className="size-4" aria-hidden="true" />I Have a Key
             </Button>
           </a>
         </div>

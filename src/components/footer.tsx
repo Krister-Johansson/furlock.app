@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="border-t border-border/30 py-10 px-4 sm:px-6">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Lock className="size-3.5" />
+          <Lock className="size-3.5" aria-hidden="true" />
           <span>Furlock — Built with Shamir's Secret Sharing</span>
         </div>
         <div className="flex items-center gap-6 text-sm text-muted-foreground">

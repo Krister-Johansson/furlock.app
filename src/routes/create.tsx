@@ -197,7 +197,7 @@ function CreatePage() {
                 <span className="flex items-center justify-center size-5 rounded-full bg-background/20 text-xs font-bold">
                   {isCompleted ? '✓' : i + 1}
                 </span>
-                <Icon className="size-3.5" />
+                <Icon className="size-3.5" aria-hidden="true" />
                 {label}
               </button>
             )
@@ -249,7 +249,7 @@ function CreatePage() {
                 className="gap-2"
               >
                 Next: Configure shares
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-4" aria-hidden="true" />
               </Button>
             </div>
           </>
@@ -261,7 +261,7 @@ function CreatePage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Users className="size-4 text-muted-foreground" />
+                  <Users className="size-4 text-muted-foreground" aria-hidden="true" />
                   <CardTitle className="text-base">
                     Key holder shares
                   </CardTitle>
@@ -328,7 +328,7 @@ function CreatePage() {
                 onClick={() => setStep(0)}
                 className="gap-2"
               >
-                <ArrowLeft className="size-4" />
+                <ArrowLeft className="size-4" aria-hidden="true" />
                 Back
               </Button>
               <Button
@@ -338,17 +338,17 @@ function CreatePage() {
               >
                 {isCreating ? (
                   <>
-                    <Loader2 className="size-4 animate-spin" />
+                    <Loader2 className="size-4 animate-spin" aria-hidden="true" />
                     Encrypting…
                   </>
                 ) : !isUnlocked ? (
                   <>
-                    <Loader2 className="size-4 animate-spin" />
+                    <Loader2 className="size-4 animate-spin" aria-hidden="true" />
                     Preparing…
                   </>
                 ) : (
                   <>
-                    <ShieldCheck className="size-4" />
+                    <ShieldCheck className="size-4" aria-hidden="true" />
                     Encrypt & Create
                   </>
                 )}
@@ -356,7 +356,7 @@ function CreatePage() {
             </div>
 
             <div className="text-xs text-muted-foreground flex items-center gap-2">
-              <FileText className="size-3.5" />
+              <FileText className="size-3.5" aria-hidden="true" />
               All cryptographic operations run in your browser using Web Crypto.
             </div>
           </>
@@ -369,7 +369,7 @@ function CreatePage() {
               variant="default"
               className="border-amber-500/30 bg-amber-500/5"
             >
-              <AlertTriangle className="size-4 text-amber-500" />
+              <AlertTriangle className="size-4 text-amber-500" aria-hidden="true" />
               <AlertDescription className="text-sm">
                 <strong>
                   Save all keys now. They will not be stored or shown again.
@@ -381,7 +381,7 @@ function CreatePage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <FileText className="size-4 text-muted-foreground" />
+                  <FileText className="size-4 text-muted-foreground" aria-hidden="true" />
                   <CardTitle className="text-base">Document</CardTitle>
                 </div>
                 <CardDescription>
@@ -401,14 +401,15 @@ function CreatePage() {
                       variant="ghost"
                       size="sm"
                       className="gap-1.5 shrink-0"
+                      aria-label="Copy document ID"
                       onClick={() =>
                         handleCopy(creationResult.docId, 'Document ID')
                       }
                     >
                       {copiedIndex === 'Document ID' ? (
-                        <Check className="size-3.5 text-green-500" />
+                        <Check className="size-3.5 text-green-500" aria-hidden="true" />
                       ) : (
-                        <ClipboardCopy className="size-3.5" />
+                        <ClipboardCopy className="size-3.5" aria-hidden="true" />
                       )}
                     </Button>
                   </div>
@@ -424,12 +425,13 @@ function CreatePage() {
                         variant="ghost"
                         size="sm"
                         className="gap-1.5 shrink-0"
+                        aria-label="Copy document URL"
                         onClick={() => handleCopy(docUrl, 'URL')}
                       >
                         {copiedIndex === 'URL' ? (
-                          <Check className="size-3.5 text-green-500" />
+                          <Check className="size-3.5 text-green-500" aria-hidden="true" />
                         ) : (
-                          <ClipboardCopy className="size-3.5" />
+                          <ClipboardCopy className="size-3.5" aria-hidden="true" />
                         )}
                       </Button>
                     </div>
@@ -442,7 +444,7 @@ function CreatePage() {
             <Card className="border-primary/30">
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <KeyRound className="size-4 text-primary" />
+                  <KeyRound className="size-4 text-primary" aria-hidden="true" />
                   <CardTitle className="text-base">Master key</CardTitle>
                 </div>
                 <CardDescription>
@@ -464,9 +466,9 @@ function CreatePage() {
                     }
                   >
                     {copiedIndex === 'Master key' ? (
-                      <Check className="size-3.5 text-green-500" />
+                      <Check className="size-3.5 text-green-500" aria-hidden="true" />
                     ) : (
-                      <ClipboardCopy className="size-3.5" />
+                      <ClipboardCopy className="size-3.5" aria-hidden="true" />
                     )}
                     {copiedIndex === 'Master key' ? 'Copied' : 'Copy'}
                   </Button>
@@ -478,7 +480,7 @@ function CreatePage() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Users className="size-4 text-muted-foreground" />
+                  <Users className="size-4 text-muted-foreground" aria-hidden="true" />
                   <CardTitle className="text-base">
                     Key holder shares
                   </CardTitle>
@@ -507,12 +509,13 @@ function CreatePage() {
                         variant="ghost"
                         size="sm"
                         className="gap-1.5 shrink-0"
+                        aria-label={`Copy ${label}`}
                         onClick={() => handleCopy(token, label)}
                       >
                         {copiedIndex === label ? (
-                          <Check className="size-3.5 text-green-500" />
+                          <Check className="size-3.5 text-green-500" aria-hidden="true" />
                         ) : (
-                          <ClipboardCopy className="size-3.5" />
+                          <ClipboardCopy className="size-3.5" aria-hidden="true" />
                         )}
                       </Button>
                     </div>
@@ -534,7 +537,7 @@ function CreatePage() {
                 }
               >
                 Go to document
-                <ExternalLink className="size-4" />
+                <ExternalLink className="size-4" aria-hidden="true" />
               </Button>
             </div>
           </>

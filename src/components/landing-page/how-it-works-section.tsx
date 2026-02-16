@@ -19,19 +19,19 @@ export function HowItWorksSection() {
         <div className="grid md:grid-cols-3 gap-8 sm:gap-12">
           <StepCard
             step={1}
-            icon={<FileText className="size-5" />}
+            icon={<FileText className="size-5" aria-hidden="true" />}
             title="Write your document"
             description="Create your secret document with our rich text editor. The content is encrypted client-side before it ever leaves your browser."
           />
           <StepCard
             step={2}
-            icon={<KeyRound className="size-5" />}
+            icon={<KeyRound className="size-5" aria-hidden="true" />}
             title="Split the key"
             description="Choose how many keys to create and how many are needed to unlock. The encryption key is split using Shamir's Secret Sharing."
           />
           <StepCard
             step={3}
-            icon={<Share2 className="size-5" />}
+            icon={<Share2 className="size-5" aria-hidden="true" />}
             title="Share with your pack"
             description="Distribute keys to your trusted key holders. When they gather enough shares, they decrypt the document together in the browser."
           />

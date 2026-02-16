@@ -13,7 +13,7 @@ export function AccessSection() {
       <div className="max-w-xl mx-auto">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center size-12 rounded-xl bg-primary/10 mb-4">
-            <KeyRound className="size-5 text-primary" />
+            <KeyRound className="size-5 text-primary" aria-hidden="true" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3">
             Access a document
@@ -57,7 +57,7 @@ function DocumentIdForm() {
           disabled={!docId.trim()}
           className="gap-1.5 shrink-0"
         >
-          <ArrowRight className="size-4" />
+          <ArrowRight className="size-4" aria-hidden="true" />
           Go
         </Button>
       </div>

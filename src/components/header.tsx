@@ -21,13 +21,14 @@ export function Header() {
             href="https://github.com/Krister-Johansson/furlock.app"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub repository"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Github className="size-5" />
+            <Github className="size-5" aria-hidden="true" />
           </a>
           <Link to="/create">
             <Button size="sm" className="gap-1.5">
-              <Plus className="size-4" />
+              <Plus className="size-4" aria-hidden="true" />
               <span className="hidden sm:inline">Create Document</span>
               <span className="sm:hidden">Create</span>
             </Button>

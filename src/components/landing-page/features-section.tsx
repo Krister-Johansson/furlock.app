@@ -14,22 +14,22 @@ export function FeaturesSection() {
         </div>
         <div className="grid sm:grid-cols-2 gap-6">
           <FeatureCard
-            icon={<Shield className="size-5" />}
+            icon={<Shield className="size-5" aria-hidden="true" />}
             title="End-to-end encrypted"
             description="Your document is encrypted in the browser. The server never sees the unencrypted content or the full encryption key."
           />
           <FeatureCard
-            icon={<Users className="size-5" />}
+            icon={<Users className="size-5" aria-hidden="true" />}
             title="Threshold unlocking"
             description="No single person can unlock the document. You choose how many key holders must cooperate — 3 of 5, 2 of 7, whatever you need."
           />
           <FeatureCard
-            icon={<Link2 className="size-5" />}
+            icon={<Link2 className="size-5" aria-hidden="true" />}
             title="Simple key sharing"
             description="Key holders receive a link — no sign-up, no app to install. When enough holders cooperate, the document unlocks instantly in the browser."
           />
           <FeatureCard
-            icon={<Code className="size-5" />}
+            icon={<Code className="size-5" aria-hidden="true" />}
             title="Open source"
             description="Furlock is fully open source under AGPL-3.0. Inspect the code, verify the crypto, trust but verify. No funny business."
           />

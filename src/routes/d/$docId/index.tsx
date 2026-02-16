@@ -122,7 +122,7 @@ function DocumentPage() {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center">
         <div className="inline-flex items-center justify-center size-16 rounded-full bg-muted mb-4">
-          <XCircle className="size-8 text-muted-foreground" />
+          <XCircle className="size-8 text-muted-foreground" aria-hidden="true" />
         </div>
         <h1 className="text-2xl font-bold tracking-tight mb-2">
           Document not found
@@ -140,7 +140,7 @@ function DocumentPage() {
       <div className="max-w-lg mx-auto px-4 sm:px-6 py-16 sm:py-24 space-y-6">
         <div className="text-center mb-2">
           <div className="inline-flex items-center justify-center size-16 rounded-full bg-muted mb-4">
-            <Lock className="size-8 text-muted-foreground" />
+            <Lock className="size-8 text-muted-foreground" aria-hidden="true" />
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">
             {doc.title}
@@ -162,7 +162,7 @@ function DocumentPage() {
                 : 'bg-muted/50 text-muted-foreground hover:text-foreground'
             }`}
           >
-            <KeyRound className="size-3.5 inline mr-1.5 -mt-0.5" />
+            <KeyRound className="size-3.5 inline mr-1.5 -mt-0.5" aria-hidden="true" />
             Master Key
           </button>
           <button
@@ -174,7 +174,7 @@ function DocumentPage() {
                 : 'bg-muted/50 text-muted-foreground hover:text-foreground'
             }`}
           >
-            <Users className="size-3.5 inline mr-1.5 -mt-0.5" />
+            <Users className="size-3.5 inline mr-1.5 -mt-0.5" aria-hidden="true" />
             Key Shares
           </button>
         </div>
@@ -217,7 +217,7 @@ function DocumentPage() {
           onClick={handleLock}
           className="gap-1.5 shrink-0"
         >
-          <Lock className="size-3.5" />
+          <Lock className="size-3.5" aria-hidden="true" />
           Lock
         </Button>
       </div>
@@ -274,7 +274,7 @@ function MasterKeyUnlock({
     <Card>
       <CardHeader>
         <CardTitle className="text-base flex items-center gap-2">
-          <KeyRound className="size-4" />
+          <KeyRound className="size-4" aria-hidden="true" />
           Unlock with Master Key
         </CardTitle>
         <CardDescription>
@@ -300,7 +300,7 @@ function MasterKeyUnlock({
           className="w-full gap-2"
         >
           {isUnlocking ? 'Decrypting...' : 'Decrypt Document'}
-          {!isUnlocking && <Unlock className="size-4" />}
+          {!isUnlocking && <Unlock className="size-4" aria-hidden="true" />}
         </Button>
       </CardContent>
     </Card>
@@ -352,7 +352,7 @@ function SharesUnlock({
     <Card>
       <CardHeader>
         <CardTitle className="text-base flex items-center gap-2">
-          <Users className="size-4" />
+          <Users className="size-4" aria-hidden="true" />
           Unlock with Key Shares
         </CardTitle>
         <CardDescription>
@@ -399,7 +399,7 @@ function SharesUnlock({
           className="w-full gap-2"
         >
           {isDecrypting ? 'Decrypting...' : 'Decrypt Document'}
-          {!isDecrypting && <Unlock className="size-4" />}
+          {!isDecrypting && <Unlock className="size-4" aria-hidden="true" />}
         </Button>
       </CardContent>
     </Card>
