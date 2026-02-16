@@ -1,4 +1,5 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router'
+import { SITE_URL } from '@/lib/seo'
 import { useEffect, useRef, useState } from 'react'
 import { KeyRound, Lock, Unlock, Users, XCircle } from 'lucide-react'
 import { toast } from 'sonner'
@@ -28,6 +29,31 @@ type EncryptedDocument = Doc<'documents'> & {
 }
 
 export const Route = createFileRoute('/d/$docId/')({
+  head: ({ params }) => ({
+    meta: [
+      { title: 'Encrypted Document — Furlock' },
+      {
+        name: 'description',
+        content:
+          'This document is encrypted with zero-knowledge encryption. Provide a master key or combine key shares to decrypt.',
+      },
+      { name: 'robots', content: 'noindex, nofollow' },
+      { property: 'og:title', content: 'Encrypted Document — Furlock' },
+      {
+        property: 'og:description',
+        content:
+          'A zero-knowledge encrypted document protected by Shamir\'s Secret Sharing.',
+      },
+      { property: 'og:url', content: `${SITE_URL}/d/${params.docId}` },
+      { name: 'twitter:title', content: 'Encrypted Document — Furlock' },
+      {
+        name: 'twitter:description',
+        content:
+          'A zero-knowledge encrypted document protected by Shamir\'s Secret Sharing.',
+      },
+    ],
+    links: [{ rel: 'canonical', href: `${SITE_URL}/d/${params.docId}` }],
+  }),
   component: DocumentPage,
 })
 

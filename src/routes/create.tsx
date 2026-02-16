@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { SITE_URL } from '@/lib/seo'
 import { useEffect, useMemo, useState } from 'react'
 import {
   AlertTriangle,
@@ -31,7 +32,25 @@ import {
 } from '@/components/ui/card'
 import { useDocumentCrypto } from '@/hooks/useDocumentCrypto'
 
-export const Route = createFileRoute('/create')({ component: CreatePage })
+const PAGE_TITLE = 'Create Encrypted Document — Furlock'
+const PAGE_DESCRIPTION =
+  "Create a zero-knowledge encrypted document with Shamir's Secret Sharing. Split access into key shares and distribute them to trusted key holders."
+
+export const Route = createFileRoute('/create')({
+  head: () => ({
+    meta: [
+      { title: PAGE_TITLE },
+      { name: 'description', content: PAGE_DESCRIPTION },
+      { property: 'og:title', content: PAGE_TITLE },
+      { property: 'og:description', content: PAGE_DESCRIPTION },
+      { property: 'og:url', content: `${SITE_URL}/create` },
+      { name: 'twitter:title', content: PAGE_TITLE },
+      { name: 'twitter:description', content: PAGE_DESCRIPTION },
+    ],
+    links: [{ rel: 'canonical', href: `${SITE_URL}/create` }],
+  }),
+  component: CreatePage,
+})
 
 const STEPS = [
   { label: 'Document', icon: FileText },
