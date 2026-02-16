@@ -5,10 +5,10 @@ import { HowItWorksSection } from '@/components/landing-page/how-it-works-sectio
 import { FeaturesSection } from '@/components/landing-page/features-section'
 import { CtaSection } from '@/components/landing-page/cta-section'
 import {
-  SITE_URL,
-  DEFAULT_TITLE,
   DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
   OG_IMAGE,
+  SITE_URL,
 } from '@/lib/seo'
 
 export const Route = createFileRoute('/')({

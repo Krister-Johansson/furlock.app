@@ -1,5 +1,6 @@
 import {
   HeadContent,
+  Link,
   Outlet,
   Scripts,
   createRootRoute,
@@ -7,17 +8,19 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { ConvexProvider, ConvexReactClient } from 'convex/react'
+import { FileText, Home, Search } from 'lucide-react'
 import appCss from '../styles.css?url'
+import { Button } from '@/components/ui/button'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import {
-  SITE_URL,
-  SITE_NAME,
-  DEFAULT_TITLE,
   DEFAULT_DESCRIPTION,
+  DEFAULT_TITLE,
   OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
 } from '@/lib/seo'
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string)
@@ -54,6 +57,7 @@ export const Route = createRootRoute({
 
   component: RootComponent,
   shellComponent: RootDocument,
+  notFoundComponent: NotFound,
 })
 
 const jsonLd = {
@@ -67,6 +71,44 @@ const jsonLd = {
   image: OG_IMAGE,
   logo: `${SITE_URL}/logo.svg`,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+}
+
+function NotFound() {
+  return (
+    <div className="max-w-xl mx-auto px-4 sm:px-6 py-20 sm:py-32 text-center">
+      {/* Magnifying glass icon with subtle pulse ring */}
+      <div className="relative inline-flex items-center justify-center mb-8">
+        <span className="absolute size-24 rounded-full bg-primary/5 animate-ping animation-duration-[3s]" />
+        <span className="absolute size-20 rounded-full bg-primary/10" />
+        <span className="relative inline-flex items-center justify-center size-16 rounded-full bg-muted border border-border">
+          <Search className="size-7 text-muted-foreground" aria-hidden="true" />
+        </span>
+      </div>
+
+      <p className="text-sm font-mono text-primary mb-3">404</p>
+      <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+        Page not found
+      </h1>
+      <p className="text-muted-foreground max-w-sm mx-auto mb-8">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <Link to="/">
+          <Button size="lg" className="gap-2 px-6">
+            <Home className="size-4" aria-hidden="true" />
+            Back to Home
+          </Button>
+        </Link>
+        <Link to="/create">
+          <Button variant="outline" size="lg" className="gap-2 px-6">
+            <FileText className="size-4" aria-hidden="true" />
+            Create a Document
+          </Button>
+        </Link>
+      </div>
+    </div>
+  )
 }
 
 function RootDocument({ children }: { children: React.ReactNode }) {

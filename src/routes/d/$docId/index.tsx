@@ -1,11 +1,12 @@
-import { createFileRoute, useRouter } from '@tanstack/react-router'
-import { SITE_URL } from '@/lib/seo'
-import { useEffect, useRef, useState } from 'react'
-import { KeyRound, Lock, Unlock, Users, XCircle } from 'lucide-react'
+import { Link, createFileRoute, useRouter } from '@tanstack/react-router'
+import { Component, useEffect, useRef, useState } from 'react'
+import { FileText, KeyRound, Lock, Search, Unlock, Users } from 'lucide-react'
 import { toast } from 'sonner'
 import { useQuery } from 'convex/react'
 import { api } from '@convex/_generated/api'
 import type { Doc, Id } from '@convex/_generated/dataModel'
+import type { ErrorInfo, ReactNode } from 'react'
+import { SITE_URL } from '@/lib/seo'
 import { formatDateTime } from '@/lib/utils'
 import { decryptWithShares, isValidMasterKey, isValidShare } from '@/lib/crypto'
 import { useDocumentCrypto } from '@/hooks/useDocumentCrypto'
@@ -57,7 +58,81 @@ export const Route = createFileRoute('/d/$docId/')({
   component: DocumentPage,
 })
 
+function DocumentNotFound({ docId }: { docId: string }) {
+  return (
+    <div className="max-w-xl mx-auto px-4 sm:px-6 py-20 sm:py-32 text-center">
+      <div className="relative inline-flex items-center justify-center mb-8">
+        <span className="absolute size-24 rounded-full bg-primary/5 animate-ping animation-duration-[3s]" />
+        <span className="absolute size-20 rounded-full bg-primary/10" />
+        <span className="relative inline-flex items-center justify-center size-16 rounded-full bg-muted border border-border">
+          <Search className="size-7 text-muted-foreground" aria-hidden="true" />
+        </span>
+      </div>
+
+      <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+        Document not found
+      </h1>
+      <p className="text-muted-foreground max-w-sm mx-auto mb-2">
+        The document you're looking for doesn't exist, may have been deleted,
+        or the link could be incorrect.
+      </p>
+      <p className="text-xs text-muted-foreground/60 font-mono mb-8 break-all">
+        /d/{docId}
+      </p>
+
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <Link to="/create">
+          <Button size="lg" className="gap-2 px-6">
+            <FileText className="size-4" aria-hidden="true" />
+            Create a Document
+          </Button>
+        </Link>
+        <Link to="/">
+          <Button variant="outline" size="lg" className="gap-2 px-6">
+            Go Home
+          </Button>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+class DocumentErrorBoundary extends Component<
+  { docId: string; children: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { docId: string; children: ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.warn('Document load failed:', error.message, info.componentStack)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <DocumentNotFound docId={this.props.docId} />
+    }
+    return this.props.children
+  }
+}
+
 function DocumentPage() {
+  const { docId } = Route.useParams()
+
+  return (
+    <DocumentErrorBoundary docId={docId}>
+      <DocumentPageInner />
+    </DocumentErrorBoundary>
+  )
+}
+
+function DocumentPageInner() {
   const { docId } = Route.useParams()
   const router = useRouter()
   const documentId = docId as Id<'documents'>
@@ -145,19 +220,7 @@ function DocumentPage() {
   }
 
   if (doc === null || !isEncryptedDocument(doc)) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center">
-        <div className="inline-flex items-center justify-center size-16 rounded-full bg-muted mb-4">
-          <XCircle className="size-8 text-muted-foreground" aria-hidden="true" />
-        </div>
-        <h1 className="text-2xl font-bold tracking-tight mb-2">
-          Document not found
-        </h1>
-        <p className="text-muted-foreground text-sm">
-          This document doesn't exist or has been deleted.
-        </p>
-      </div>
-    )
+    return <DocumentNotFound docId={docId} />
   }
 
   // Locked state — unified unlock for both master key and shares
