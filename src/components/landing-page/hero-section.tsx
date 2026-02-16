@@ -43,9 +43,6 @@ export function HeroSection() {
           Encrypt documents and split the key into multiple shares. No single
           person can unlock it alone — your pack holds the key.
         </TextAnimate>
-        <p className="text-sm text-muted-foreground/70 mb-10 italic">
-          Your pack holds the key.
-        </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link to="/create">
             <Button size="lg" className="gap-2 text-base px-8">
